@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Client</title>
+    <link rel="stylesheet" href="../style/bulma.min.css">
+    <link rel="stylesheet" href="../chatpublic/chatcss.css">
+
+    <style>
+        html{background-color: black;}
+        .grid-wrapper {
+            --auto-grid-min-size: 16rem;
+            display: grid;
+            grid-gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .grid-wrapper li {
+            color: #ffffff;
+            font-size: 24px;
+            list-style-type: none;
+            padding: 5rem 1rem;
+            text-align: center;
+            text-transform: capitalize;
+            font-weight: 600;
+            transition: transform 0.7s ease-in-out; /* Add transition for smooth scaling */
+        }
+
+        .grid-wrapper li:hover{
+            background-color: cadetblue ;
+        }
+
+        .grid-wrapper li.selected {
+            background-color: #6b7280;
+            transform: scale(1.3); /* Apply scale transformation to selected li */
+        }
+
+        .main-container {
+            margin: 0 auto;
+            max-width: 1170px;
+            padding: 2rem 1rem;
+            margin-top: 120px; /* Adjust this value as needed */
+ 
+        }
+
+        .msgarea {
+            position: fixed;
+            top: -10px; /* Adjust as per your layout */
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 90%; /* Adjust width as per your design */
+            max-width: 500px; /* Adjust max-width as per your design */
+            z-index: 9999;
+            background-color: white; /* Add background color */
+            padding: 20px;
+            border-radius: 10px; /* Add border radius for a nicer look */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add box shadow for depth */
+        }
+
+        textarea {
+            font-size: 20px !important; /* Adjust font size as per your design */
+            color: blue !important;
+            width: 100%; /* Make the textarea width 100% */
+            margin-bottom: 10px; /* Add some space below the textarea */
+        }
+
+        .button {
+            width: 100%; /* Make the button width 100% */
+        }
+    </style>
+</head>
+<body>
+    
+   
+<section>
+
+    <div class="msgarea">
+         <textarea cols="30" rows="1" id="inputmsg" class="textarea is-success" placeholder="Your message here"></textarea>
+          <div style=" width: 100%; display: flex; justify-content: space-between;">
+            <button style=" width: 130px;" onclick="togglechat()" class="button is-info" id="toggale">open chatbox</button>
+            <button style=" width: 60px; background-color: #feff5e;" onclick="sendmessage()" class="button"><img width="40" src="../asset/send.png" alt="" srcset=""></button>
+           
+
+          </div>
+
+
+        <section class="chatbox">
+            <h1 style="    font-size: 30px; background-color: yellow; text-align: center; color: blue; font-weight: 800;">chatbox</h1>
+            <div id="msgbox">
+             
+               </div>
+       
+       </section>
+    </div>
+
+    <div class="main-container">
+        <ul class="grid-wrapper">
+            <% questions.forEach(question => { %>
+            <div class="field">
+                <li onclick="selectQuestion(this)" style="background-color: <%= '#' + (Math.random().toString(16) + '000000').slice(2, 8) %>;"><%= question.text %></li>
+            </div>
+            <% }); %>
+        </ul>
+    </div>
+</section>
+
+<script>
+    function selectQuestion(element) {
+        // Remove 'selected' class from all li elements
+        var lis = document.querySelectorAll('.grid-wrapper li');
+        lis.forEach(function(li) {
+            li.classList.remove('selected');
+        });
+
+        // Add 'selected' class to the clicked li element
+        element.classList.add('selected');
+
+        // Set text into input 
+        document.getElementById("inputmsg").value = element.innerText;
+    }
+
+
+
+
+
+</script>
+
+  
+</script>
+<script src="../js/jquery.js"></script>
+<script src="../js/swtt.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+const socket =window.io()
+  const sendmessage=()=>{
+      const txt =document.getElementById("inputmsg").value
+      socket.emit("sendmsg" ,{txt,from:"client"})
+
+
+              const msgbox = document.getElementById("msgbox");
+                  // create p
+                const pelemtn = document.createElement("p");
+                 pelemtn.classList.add("sender");
+                  pelemtn.innerText = txt;
+                  msgbox.appendChild(pelemtn);
+
+                    // create img
+                  const img = document.createElement("img");
+                    img.setAttribute("width", "40");
+                    img.setAttribute("src", "../asset/chat/client.png");
+                    img.setAttribute("alt", "");
+                    img.setAttribute("srcset", "");
+                     pelemtn.appendChild(img);
+
+                     const br = document.createElement("br");
+                    msgbox.appendChild(br);
+
+
+
+
+
+
+  }
+
+
+ socket.on("recivemsg",({txt,from})=>{
+       
+    if(from === "server") {
+            //  const txtmsghtml = `<p class="sender">${txt}</p>`;
+                const msgbox = document.getElementById("msgbox");
+                  // create p
+                const pelemtn = document.createElement("p");
+                 pelemtn.classList.add("receiver");
+                  pelemtn.innerText = txt;
+                  msgbox.appendChild(pelemtn);
+
+                    // create img
+                  const img = document.createElement("img");
+                    img.setAttribute("width", "40");
+                    img.setAttribute("src", "../asset/chat/support.png");
+                    img.setAttribute("alt", "");
+                    img.setAttribute("srcset", "");
+                     pelemtn.appendChild(img);
+
+                     const br = document.createElement("br");
+                    msgbox.appendChild(br);
+
+            }
+
+
+           
+  })
+  
+
+
+const togglechat =()=>{
+      $(".chatbox").slideToggle(500)}
+</script>
+</body>
+</html>

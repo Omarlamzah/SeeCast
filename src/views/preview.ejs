@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="../style/bulma.min.css">
+ 
+  
+    <title>Preview</title>
+    
+
+</head>
+<style>
+
+
+</style>
+
+ 
+<body>
+
+
+    
+    <section id="Devicepreview">
+       <h1  class="h1" style=" font-size: 30px; text-align: center; background-color: #ffc107; color: #007bff; padding: 4px;">⚡ watch in privew  ⚡</h1>
+
+      <div style="display: flex; justify-content: center;  gap: 10px; margin: 10px;">
+        <div class="select is-info">
+        <select name=""  id="url_iframe">
+          <option value="1"> Device 1</option>    <option value="2"> Device 2</option>    <option value="3"> Device 3</option>    <option value="4"> Device 4</option>    <option value="5"> Device 5</option>    <option value="6"> Device 6</option>    <option value="7"> Device 7</option>    <option value="8"> Device 8</option>    <option value="9"> Device 9</option>    <option value="10">Device 10</option>    <option value="11">Device 11</option>    <option value="12">Device 12</option>    <option value="13">Device 13</option>    <option value="14">Device 14</option>    <option value="15">Device 15</option>    <option value="16">Device 16</option>    <option value="17">Device 17</option>    <option value="18">Device 18</option>    <option value="19">Device 19</option>    <option value="20">Device 20</option>    <option value="21">Device 21</option>    <option value="22">Device 22</option>     <option value="23">Device 23</option>    <option value="24">Device 24</option>    <option value="25">Device 25</option>    <option value="26">Device 26</option>    <option value="27">Device 27</option>    <option value="28">Device 28</option>    <option value="29">Device 29</option>     <option value="30">Device 30</option>     <option value="31">Device 31</option>     <option value="32">Device 32</option>     <option value="33">Device 33</option>     <option value="34">Device 34</option>     <option value="35">Device 35</option>     <option value="36">Device 36</option>     <option value="37">Device 37</option>     <option value="38">Device 38</option>     <option value="39">Device 39</option>     <option value="40">Device 40</option>     <option value="41">Device 41</option>     <option value="42">Device 42</option>     <option value="43">Device 43</option>     <option value="44">Device 44</option>     <option value="45">Device 45</option>     <option value="46">Device 46</option>     <option value="47">Device 47</option>     <option value="48">Device 48</option>     <option value="49">Device 49</option>     <option value="50">Device 50</option>     <option value="51">Device 51</option>     <option value="52">Device 52</option>     <option value="53">Device 53</option>     <option value="54">Device 54</option>     <option value="55">Device 55</option>     <option value="56">Device 56</option>     <option value="57">Device 57</option>     <option value="58">Device 58</option>     <option value="59">Device 59</option>     <option value="60">Device 60</option> 
+        </select> 
+        </div>     
+          <button class="button is-link" id="previewButton">Preview Device</button>
+      </div>
+
+
+
+      <div style="width: 95vw; margin: auto;">
+        <iframe style="width: 100%; height: 50vh;" id="iframe_Device" src="" frameborder="0"></iframe>
+
+      </div>
+    </section>
+   
+    </section>
+ 
+
+
+
+    <div class="device-frame" id="iframe_Device_forphone">
+      <iframe style="width: 100vw; height: 50vh;" id="iframe_Device_forphone" src="" frameborder="0"></iframe>
+    </div>
+    
+    <div class="device-frame" id="iframe_Device_forDevice">
+      <iframe style="width: 100vw; height: 50vh;" id="iframe_Device_forDevice" src="" frameborder="0"></iframe>
+    </div>
+    
+    <div class="device-frame" id="iframe_Device_forpc">
+      <iframe style="width: 100vw; height: 50vh;" id="iframe_Device_forpc" src="" frameborder="0"></iframe>
+    </div>
+    
+
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery.custom-select.js"></script>
+
+
+    
+    <script src="../js/swtt.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+   <!-- <script src="../js/appjs.js"></script>-->
+    <script src="../js/counter.js"></script>
+    <script src="../js/notify.min.js"></script>
+
+
+ 
+
+
+    <script>
+      // script for iframe
+      // Get references to the input and iframe elements
+      const urlInput = document.getElementById('url_iframe');
+      const iframe = document.getElementById('iframe_Device');
+       // Get reference to the button
+      const previewButton = document.getElementById('previewButton');
+    
+      // Add event listener to the button
+      previewButton.addEventListener('click', function() {
+        // Get the value from the input field
+        const url = "http://localhost:8080/"+ urlInput.value;
+        
+        // Set the src attribute of the iframe
+        iframe.src = url;
+        
+
+        
+      });
+    </script>
+
+ 
+</body>
+</html>

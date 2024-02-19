@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Screen sharing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../style/bootstrap.min.css">
+  <link rel="stylesheet" href="../style/bulma.min.css">
+</head>
+
+<style>
+  .content {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: black;
+    color: white;
+  }
+
+  #videoElement {
+    width: 400px;
+    height: 300px;
+    border: 2px solid yellow;
+    margin: 20px auto;
+    display: block;
+  }
+
+  .button {
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+  }
+
+  .is-primary {
+    background-color: #007bff;
+  }
+
+  .is-warning {
+    background-color: #ffc107;
+  }
+
+  #timer ,#share_timer{ color: #ffc107;}
+
+
+  .btn {
+    
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 13px;
+    padding: 5px 24px;
+    border: 0;
+    color: #fff;
+     line-height: 1.15;
+    font-size: 16px;
+                  
+                
+  }
+  .btnget:hover {
+                        transition: all .1s ease;
+                        box-shadow: 0 0 0 0 #fff, 0 0 0 3px #1de9b6;
+                    }
+
+
+      .btnstart:hover {
+          transition: all .1s ease;
+          box-shadow: 0 0 0 0 #fff, 0 0 0 3px #1de9b6;
+          background-color: #1de9b683;
+      }
+      .btnstop:hover {
+          transition: all .1s ease;
+          box-shadow: 0 0 0 0 #fff, 0 0 0 3px #e74c05;
+          background-color: #e55454b0;
+
+      }
+</style>
+
+<body class="content">
+  <h1 style=" background-color: #ffc107; color: #007bff; padding: 4px;">⚡ Screen sharing ⚡</h1>
+  <section style=" display: flex; justify-content: center; align-items: center;">
+    <div>
+      <img style="width: 300px;" src="./asset/bgcast.jpg" alt="" srcset="">
+    </div>
+    <div>
+      <!--<p>⚡ get ip: <%= url %> ⚡</p>-->
+      <p>⚡ like this  http://<strong>ip_here</strong>:8080/screen ⚡</p>
+      <p>⚡ like this  http:// <strong>192.168.1.1</strong> :8080/screen ⚡</p>
+    </div>
+
+  </section>
+
+
+  <div style="margin: 26px 0 ;">
+    <span>Time: <span id="timer">00:00</span></span> <br>
+    <span>Sharing Time: <span id="share_timer">00:00</span></span>
+  </div>
+
+  <video id="videoElement" autoplay playsinline style="box-shadow: 0px 0px 9px 1px #ffc107; border-radius: 10px" onerror="showPlaceholder()">
+    <!-- Fallback content goes here -->
+    Your browser does not support the video tag or the video stream is empty.
+  </video>
+  
+  <div style="display: flex; justify-content: center; gap: 20px;">
+    <select style="width: 300px; margin: auto 0;" class="form-select col-auto" id="sourceSelect"></select>
+    <button onclick="getVideoSources()" class="btn btnget">Get Source</button>
+
+  </div>
+
+
+  <section style=" padding: 15px 0;">
+    
+  <button onclick="startSharing()" id="startBtn" class="btn btnstart">
+    <img width="25px" height="25px" src="./asset/startit.png" alt="" srcset="">
+    Start
+
+  </button>
+
+  <button onclick="stopSharing()" id="stopBtn" class="btn btnstop" style="display: none;">
+    <img width="25px" height="25px" src="./asset/stopit.png" alt="" srcset="">
+    Stop
+
+  </button>
+
+  <button onclick="shearScreen()" id="shearBtn" class="btn btnstart" style="display: none;">
+    <img width="25px" height="25px" src="./asset/shareit.svg" alt="" srcset="">
+    Share It
+  </button>
+
+  </section>
+  <script src="../js/swtt.js"></script>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io(); // Connect to Socket.IO server
+
+    const getVideoSources = () => {
+      apishear.send("getsource")
+    }
+
+    apishear.recive("getsource-response", (sources) => {
+      const sourceSelect = document.getElementById('sourceSelect');
+      sourceSelect.innerHTML = ''; // Clear existing options
+
+      sources.forEach(source => {
+        const option = document.createElement('option');
+        option.value = source.id;
+        option.text = source.name;
+        sourceSelect.appendChild(option);
+      });
+    });
+
+    let stream;
+    let peerConnection;
+    let timerInterval;
+    let totalSeconds = 0;
+
+    
+    let share_timertotalSeconds = 0;
+    let share_timerInterval;
+
+    
+
+    const startSharing = async () => {
+      socket.emit('startstream');
+      const sourceSelect = document.getElementById('sourceSelect');
+      const selectedSourceId = sourceSelect.value;
+      console.log(selectedSourceId)
+
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({
+          audio: false,
+          video: {
+            mandatory: {
+              chromeMediaSource: 'desktop',
+              chromeMediaSourceId: selectedSourceId,
+              minWidth: 1280,
+              maxWidth: 1280,
+              minHeight: 720,
+              maxHeight: 720
+            }
+          }
+        });
+        console.log('Stream:', stream); // Log the stream object
+        handleStream(stream);
+        document.getElementById('startBtn').style.display = 'none';
+        document.getElementById('stopBtn').style.display = 'inline-block';
+        document.getElementById('shearBtn').style.display = 'inline-block';
+        startTimer();
+      } catch (e) {
+        handleError(e);
+      }
+    }
+
+    function handleStream(stream) {
+      const video = document.querySelector('video')
+      video.srcObject = stream;
+      video.onloadedmetadata = (e) => video.play();
+    }
+
+    async function sendStream(stream) {
+      peerConnection = new RTCPeerConnection();
+      stream.getTracks().forEach(track => peerConnection.addTrack(track, stream));
+
+      peerConnection.onicecandidate = event => {
+        if (event.candidate) {
+          socket.emit('ice-candidate', event.candidate);
+        }
+      };
+
+      try {
+        const offer = await peerConnection.createOffer();
+        await peerConnection.setLocalDescription(offer);
+        socket.emit('offer', offer);
+      } catch (error) {
+        handleError(error);
+      }
+
+      socket.on('answer', async (answer) => {
+        try {
+          await peerConnection.setRemoteDescription(answer);
+        } catch (error) {
+          handleError(error);
+        }
+      });
+    }
+
+
+    function startTimer() {
+        timerInterval = setInterval(updateTimer, 1000);
+      }
+    function startshare_timer() {
+      share_timerInterval = setInterval(updateshare_timer, 1000);
+    }
+  
+
+
+    
+
+    function updateTimer() {
+      totalSeconds++;
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
+      document.getElementById('timer').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+
+
+    function updateshare_timer() {
+      share_timertotalSeconds++;
+      const minutes = Math.floor(share_timertotalSeconds / 60);
+      const seconds = share_timertotalSeconds % 60;
+      document.getElementById('share_timer').textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+
+    
+
+    function stopSharing() {
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+      }
+      if (peerConnection) {
+        peerConnection.close();
+      }
+      socket.emit('stopstream');
+      document.getElementById('startBtn').style.display = 'inline-block';
+      document.getElementById('stopBtn').style.display = 'none';
+      document.getElementById('shearBtn').style.display = 'none';
+      clearInterval(share_timerInterval); // Stop the timer
+      clearInterval(timerInterval); // Stop the timer
+      totalSeconds = 0; // Reset totalSeconds
+      share_timertotalSeconds = 0;
+      document.getElementById('timer').textContent = '00:00'; // Reset timer display
+      document.getElementById('share_timer').textContent = '00:00'; // Reset timer display
+
+    }
+
+    function shearScreen() {
+      clearInterval(share_timerInterval); // Stop the timer
+      share_timertotalSeconds = 0;
+      sendStream(stream); // Send the stream to the server
+      startshare_timer()
+      swal.fire({
+        text: "Screen sharing is now active with others.",
+    timer: 5000,
+    timerProgressBar: true,
+    showConfirmButton: false
+  });    }
+
+    function handleError(error) {
+      console.error('Error:', error);
+    }
+
+
+
+
+
+    // for video text
+    
+  </script>
+</body>
+
+</html>

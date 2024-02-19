@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../style/mainapp.css">
+  <link rel="stylesheet" href="../style/bulma.min.css">
+  <link rel="stylesheet" href="../style/stylecss.css">
+  <link rel="stylesheet" href="../style/bootstrap.min.css">
+
+  <title>Media</title>
+
+
+</head>
+<style>
+  #Devicepreview {
+    padding: 20px;
+    background-color: #f0f0f0;
+  }
+
+  #Devicepreview div {
+    margin-bottom: 20px;
+  }
+
+
+
+  #imageSection img {
+    width: 200px;
+    /* Set width of images */
+    height: auto;
+    /* Maintain aspect ratio */
+    margin-right: 10px;
+    /* Add space between image and text */
+  }
+
+  #imageSection span {
+    font-weight: bold;
+    /* Make the filename bold */
+  }
+
+
+
+  #imageSection {
+    display: flex;
+    justify-content: center;
+  }
+
+  #imageSection div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+
+
+
+
+
+  /* CSS */
+  .container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  #imageSection,
+  #videoSection {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  div {
+    text-align: center;
+  }
+
+  span {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+  #videoInput {
+    display: none;
+  }
+
+
+
+
+
+  #dropArea {
+    margin: auto;
+    height: 250px;
+    width: 505px;
+    border: dotted;
+    background: radial-gradient(#ce344c, #142539);
+    color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    text-align: center;
+    padding: 10px;
+    margin-top: 8px;
+}
+
+
+
+  #dropArea:hover{
+    background-color: aliceblue; 
+    color:    rgb(22, 16, 16);
+     cursor: pointer;
+  }
+</style>
+
+
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </article>
+
+
+  </section>
+
+  <section class="imagesection">
+
+    <article id="imgco" class="artcl bag">
+
+      <div style=" display: none;"><img style="width: 40%;" src="./../asset/media.png" alt="" srcset=""></div>
+       <h1  class="h1" style=" width: 100%; margin: 0;  text-align: center; background-color: #ffc107; color: #007bff; padding: 4px;">⚡ media  ⚡</h1>
+
+     
+
+      <div>
+        <img src="./../asset/mediabg.jpg" alt="" srcset="">
+      </div>
+
+
+      <form action="/upload" method="post" enctype="multipart/form-data">
+        <div id="dropArea" >
+          <label for="url">Choose Image or video <br> Drag Drop Here
+            <br><span>or click on area to select file</span>
+          </label>
+          <input style="display: none;" type="file" name="img" id="url" onchange="previewImage(event)">
+        </div>
+      
+        <div id="imginfo" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+          <img id="imagepreview" src="" srcset="" style="max-width: 100%; max-height: 100px;"><br>
+          <video id="videoInput" src="" controls muted style="max-width: 100%; max-height: 100px;"></video> <br>
+      
+          <label style="color: white; font-size: 30px;" id="nameimagepreview" for=""> </label>
+          <span style="display: none;"><img width="20" src="./../asset/copy.svg" alt="" srcset=""></span>
+      
+        </div>
+      
+      
+        <div class="progress" style="display: none;">
+          <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+            aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 10%"></div>
+        </div>
+      
+        <span id="loadingMessage"></span>
+      
+      
+     <div style="display: flex;justify-content: center;">
+      <button onclick="handelUploaddfile()" style="" class="btn btn-success" type="submit">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white"
+          class="bi bi-cloud-arrow-up-fill" viewBox="0 0 16 16">
+          <path
+            d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2zm2.354 5.146a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2z" />
+        </svg> upload</button>
+     </div>
+      </form>
+      
+      
+
+
+
+
+      <input placeholder="image gif video to send..." type="text" name="" id="imgname">
+      <select  style="width: 500px;" id="numtabbg" class="form-select">
+        <option value="1"> Device 1</option>
+        <option value="2"> Device 2</option>
+        <option value="3"> Device 3</option>
+        <option value="4"> Device 4</option>
+        <option value="5"> Device 5</option>
+        <option value="6"> Device 6</option>
+        <option value="7"> Device 7</option>
+        <option value="8"> Device 8</option>
+        <option value="9"> Device 9</option>
+        <option value="10">Device 10</option>
+        <option value="11">Device 11</option>
+        <option value="12">Device 12</option>
+        <option value="13">Device 13</option>
+        <option value="14">Device 14</option>
+        <option value="15">Device 15</option>
+        <option value="16">Device 16</option>
+        <option value="17">Device 17</option>
+        <option value="18">Device 18</option>
+        <option value="19">Device 19</option>
+        <option value="20">Device 20</option>
+        <option value="21">Device 21</option>
+        <option value="22">Device 22</option>
+        <option value="23">Device 23</option>
+        <option value="24">Device 24</option>
+        <option value="25">Device 25</option>
+        <option value="26">Device 26</option>
+        <option value="27">Device 27</option>
+        <option value="28">Device 28</option>
+        <option value="29">Device 29</option>
+        <option value="30">Device 30</option>
+        <option value="31">Device 31</option>
+        <option value="32">Device 32</option>
+        <option value="33">Device 33</option>
+        <option value="34">Device 34</option>
+        <option value="35">Device 35</option>
+        <option value="36">Device 36</option>
+        <option value="37">Device 37</option>
+        <option value="38">Device 38</option>
+        <option value="39">Device 39</option>
+        <option value="40">Device 40</option>
+        <option value="41">Device 41</option>
+        <option value="42">Device 42</option>
+        <option value="43">Device 43</option>
+        <option value="44">Device 44</option>
+        <option value="45">Device 45</option>
+        <option value="46">Device 46</option>
+        <option value="47">Device 47</option>
+        <option value="48">Device 48</option>
+        <option value="49">Device 49</option>
+        <option value="50">Device 50</option>
+        <option value="51">Device 51</option>
+        <option value="52">Device 52</option>
+        <option value="53">Device 53</option>
+        <option value="54">Device 54</option>
+        <option value="55">Device 55</option>
+        <option value="56">Device 56</option>
+        <option value="57">Device 57</option>
+        <option value="58">Device 58</option>
+        <option value="59">Device 59</option>
+        <option value="60">Device 60</option>
+
+
+
+
+      </select>
+      <div style="display: flex; gap: 10px; padding: 20px; width: 100%;">
+
+        <button style="width: 80%; color: white;" onclick="bgchange()" class="btn btn-warning" id="btntoutch">replace
+          device</button>
+        <button style="width: 80%; color: white;" onclick="bgtoutchange()" class="btn btn-success" id="bch">replace all
+          Devices</button>
+        <button style="width: 80%; color: white;" onclick="bgtoutchange_remove()" class="btn btn-danger" id="bch"> reset
+ 
+      </div>
+    </article>
+    <article style="margin: 10px;">
+      <button class="btn btn-success" id="displayBtn">
+        <img style="width: 30px;" src="../asset/menu/media.png" alt="" srcset="">
+        Display media</button>
+      <button class="btn btn-danger" onclick="removeAllImagesClick()" id="removeallImage">          
+         <img style="width: 30px;" src="../asset/trash.svg" alt="" srcset="">
+      remove media</button>
+
+
+
+      <div class="container">
+        <div id="imageSection">
+          <!-- Images will be displayed here -->
+
+        </div>
+
+        <div id="videoSection">
+          <!-- Videos will be displayed here -->
+        </div>
+      </div>
+
+
+
+    </article>
+
+
+
+
+
+
+  </section>
+
+
+
+  </section>
+
+
+
+
+
+
+  <div>
+
+
+
+
+  </div>
+
+
+
+  </section>
+
+
+
+  <script src="../js/jquery.js"></script>
+  <script src="../js/jquery.custom-select.js"></script>
+
+
+
+  <script src="../js/swtt.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="../js/appjs.js"></script>
+  <script src="../js/counter.js"></script>
+  <script src="../js/notify.min.js"></script>
+  <script src="../media/mediarender.js"></script>
+
+
+  <script>
+
+
+document.querySelector("form").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent the form from submitting normally
+  });
+
+  // Prevent default behavior (Prevent file from being opened)
+  function preventDefaults(e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+  // Highlight drop area when a file is dragged over it
+  function highlight() {
+    dropArea.classList.add('highlight');
+  }
+
+  // Unhighlight drop area when a file is dragged out of it
+  function unhighlight() {
+    dropArea.classList.remove('highlight');
+  }
+
+  // Handle dropped files
+  function handleDrop(e) {
+    var dt = e.dataTransfer;
+    var files = dt.files;
+    document.getElementById("url").files = files;
+    handleFiles(files);
+  }
+
+  function handleFiles(files) {
+    // Process each dropped file
+    for (var i = 0; i < files.length; i++) {
+      var file = files[i];
+      previewFile(file);
+    }
+  }
+
+  function previewFile(file) {
+    var reader = new FileReader();
+    reader.onloadend = function () {
+      var img = document.getElementById('imagepreview');
+      var video = document.getElementById('videoInput');
+      if (file.type.startsWith('image')) {
+        img.src = reader.result;
+        img.style.display = 'block';
+        video.style.display = 'none';
+      } else if (file.type.startsWith('video')) {
+        video.src = reader.result;
+        video.style.display = 'block';
+        img.style.display = 'none';
+      }
+      var name = document.getElementById('nameimagepreview');
+      name.textContent = file.name;
+    }
+    reader.readAsDataURL(file);
+  }
+
+  var dropArea = document.getElementById('dropArea');
+
+  // Prevent default drag behaviors
+  ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+    dropArea.addEventListener(eventName, preventDefaults, false);
+  });
+
+  // Highlight drop area when item is dragged over it
+  ['dragenter', 'dragover'].forEach(eventName => {
+    dropArea.addEventListener(eventName, highlight, false);
+  });
+
+  // Unhighlight drop area when item is dragged out of it
+  ['dragleave', 'drop'].forEach(eventName => {
+    dropArea.addEventListener(eventName, unhighlight, false);
+  });
+
+  // Handle dropped files
+  dropArea.addEventListener('drop', handleDrop, false);
+
+  // Handle file input change event
+  function previewImage(event) {
+    var input = event.target;
+    var reader = new FileReader();
+    reader.onload = function () {
+      var img = document.getElementById('imagepreview');
+      img.src = reader.result;
+      var name = document.getElementById('nameimagepreview');
+      name.textContent = input.files[0].name;
+    }
+    reader.readAsDataURL(input.files[0]);
+  }
+
+  </script>
+
+
+
+  <script>
+
+
+
+    // remove all images 
+    // Function to remove all images
+    async function removeAllImagesClick() {
+      const confirmation = confirm("Are you sure you want to delete all images?");
+      if (confirmation) {
+        try {
+          const response = await fetch('/removeimages', {
+            method: 'DELETE'
+          });
+          if (response.ok) {
+            alert('All images have been deleted successfully.');
+            // You can also update the UI to reflect the changes if needed
+          } else {
+            console.error('Failed to delete images:', response.statusText);
+            // Handle error if needed
+          }
+        } catch (error) {
+          console.error('Error deleting images:', error);
+          // Handle error if needed
+        }
+      }
+    }
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+
+
+
+
+
+
+
+    function previewImage(event) {
+      const input = event.target;
+      const imagePreview = document.getElementById('imagepreview');
+      const nameImagePreview = document.getElementById('nameimagepreview');
+      const imgname = document.getElementById('imgname');
+      const videoInput = document.getElementById('videoInput'); // video tag to handle video preview
+
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        const file = input.files[0];
+        const fileType = file.type;
+
+        // Check if the file is an image
+        if (fileType.startsWith('image')) {
+          reader.onload = function (e) {
+            imagePreview.src = e.target.result;
+            nameImagePreview.textContent = file.name;
+            imgname.value = file.name;
+            videoInput.style.display = 'none'; // Hide video input if visible
+          };
+          reader.readAsDataURL(file);
+        }
+        // Check if the file is a video
+        else if (fileType.startsWith('video')) {
+          videoInput.src = URL.createObjectURL(file);
+          videoInput.style.display = 'block'; // Show video input
+          imagePreview.src = ''; // Clear image preview
+          nameImagePreview.textContent = '';
+          imgname.value = file.name;
+        }
+        else {
+          // File type not supported
+          alert('Unsupported file type');
+        }
+      } else {
+        imagePreview.src = '';
+        nameImagePreview.textContent = '';
+        imgname.value = '';
+      }
+    }
+
+
+
+  </script>
+</body>
+
+</html>

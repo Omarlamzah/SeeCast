@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="../style/bulma.min.css">
+    <link rel="stylesheet" href="../chatpublic/chatcss.css">
+    <style>
+        /* Additional CSS styles */
+        body {
+            padding: 20px;
+            background-color: black;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .mb-2 {
+            margin-bottom: 20px;
+        }
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+<section class="chatbox">
+   <div id="msgbox">
+  
+   </div>
+      <div class="typebox">
+        <textarea id="textinputmsg" cols="30" rows="2" id="inputmsg" class="textarea is-success" placeholder="Your message here"></textarea>
+        <button style=" width: 60px; background-color: #feff5e;" onclick="sendmessage()" class="button"><img width="40" src="../asset/send.png" alt="" srcset=""></button>
+
+       </div>
+</section>
+
+
+
+
+    <div style="display: flex;  flex-direction: column; align-items: center;">
+        <h1 class="title">Chat support</h1>
+        <p>⚡ like this  http://<strong>ip_here</strong>:8080/chat ⚡</p>
+        <p>⚡ like this  http:// <strong>192.168.1.1</strong> :8080/chat ⚡</p>        
+        <div class="field has-addons mb-2">
+            <div class="control">
+                <input id="addinput" class="input" type="text" placeholder="Enter question...">
+
+            </div>
+            <div class="control">
+                <button onclick="addquestion()" id="addbtn" class="button is-primary">Add Question</button>
+            </div>
+        </div>
+
+        <div class="field is-grouped mb-2">  
+            <p class="control">
+                <button onclick="getquestion()" id="getquestionbtn" class="button is-info"><img width="30" src="../asset/reseticon.png" alt="" srcset=""> Get Questions</button>
+            </p>
+            <p class="control">
+                <button onclick="removequestion()" class="button is-danger"> <img width="30" src="../asset/trash.svg" alt="" srcset="">Remove</button>
+            </p>
+            <p class="control">
+                <button onclick="removeallQuestion()" class="button is-danger"><img width="30" src="../asset/trash.svg" alt="" srcset=""> Remove All</button>
+            </p>
+            <p class="control">
+                <button onclick="updatequestion()" class="button is-warning"> <img width="30" src="../asset/menu/update.png" alt="" srcset=""> Update</button>
+            </p>
+        </div>
+
+        <div class="select is-multiple mb-2">
+            <select id="questioncontainer" multiple></select>
+        </div>
+    </div>
+    
+    <script>
+        // Function to add a question
+        const addquestion = async() => {
+            const addinput = document.getElementById("addinput");
+           await apichat.send('createQuestion', addinput.value);  
+            getquestion()
+        };
+
+        // Function to get questions
+        const getquestion = () => {
+            apichat.send('getquestion');  
+        };
+        const removequestion= async()=>{
+            const id = document.getElementById("questioncontainer").value
+               await  apichat.send('removeQuestion',id);  
+               getquestion()
+        } 
+
+
+        const removeallQuestion=async()=>{
+             await apichat.send('removeallQuestion');
+              getquestion()
+        }
+
+        const updatequestion= async()=>{
+            const text = document.getElementById("addinput").value;
+            const id = document.getElementById("questioncontainer").value
+           await  apichat.send('updateQuestion',{id ,text});  
+            getquestion()
+        } 
+        // Receive response for getquestion
+        apichat.recive('getquestion-response', (result) => {
+            console.log("Received question-response:", result);
+            console.log(result)
+            const questionContainer = document.getElementById('questioncontainer');
+            questionContainer.innerHTML = ""; // Clear previous questions
+            // Render received questions
+            result.forEach(question => {
+                console.log(question)
+                const questionElement = document.createElement('option');
+                questionElement.innerText = question.text;
+                questionElement.value = question.id;
+
+                questionContainer.appendChild(questionElement);
+            });
+        });
+
+
+
+
+
+      
+    </script>
+        <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+                const socket =window.io()
+                const sendmessage=()=>{
+            const txt =document.getElementById("textinputmsg").value
+            socket.emit("sendmsg" ,{txt,from:"server"})
+
+
+
+               //  const txtmsghtml = `<p class="sender">${txt}</p>`;
+               const msgbox = document.getElementById("msgbox");
+                  // create p
+                const pelemtn = document.createElement("p");
+                 pelemtn.classList.add("sender");
+                  pelemtn.innerText = txt;
+               
+
+                    // create img
+                  const img = document.createElement("img");
+                    img.setAttribute("width", "40");
+                    img.setAttribute("src", "../asset/chat/support.png");
+                    img.setAttribute("alt", "");
+                    img.setAttribute("srcset", "");
+                     pelemtn.appendChild(img);
+
+                     const br = document.createElement("br");
+
+
+                     msgbox.appendChild(pelemtn);
+                    msgbox.appendChild(br);
+
+        }
+
+
+        socket.on("recivemsg",({txt,from})=>{
+
+            if (from === "client") {
+                  //  const txtmsghtml = `<p class="sender">${txt}</p>`;
+                const msgbox = document.getElementById("msgbox");
+                  // create p
+                const pelemtn = document.createElement("p");
+                 pelemtn.classList.add("receiver");
+                  pelemtn.innerText = txt;
+                  msgbox.appendChild(pelemtn);
+
+                    // create img
+                  const img = document.createElement("img");
+                    img.setAttribute("width", "40");
+                    img.setAttribute("src", "./asset/chat/client.png");
+                    img.setAttribute("alt", "");
+                    img.setAttribute("srcset", "");
+                     pelemtn.appendChild(img);
+
+                     const br = document.createElement("br");
+                    msgbox.appendChild(br);
+                }
+
+
+              
+
+
+  })
+    </script>
+</body>
+</html>

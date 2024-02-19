@@ -1,0 +1,58 @@
+
+
+        /* Chatbox container */
+        .chatbox {
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+            margin: 10px;
+          
+            overflow-y: scroll;
+           max-height: 400px;
+        }
+        
+        /* Sender message style */
+        .sender {
+            background-color: #DCF8C6; /* Light green */
+            color: #333;
+            padding: 8px 12px;
+            border-radius: 10px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            width: 80%; /* Limit width for responsiveness */
+            display: flex;
+                 justify-content: start;
+        }
+        
+        /* Receiver message style */
+        .receiver {
+            background-color: #E0E0E0; /* Light gray */
+            color: #333;
+            padding: 8px 12px;
+            border-radius: 10px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            width: 80%; /* Limit width for responsiveness */
+            display: flex;
+                float: right;
+                justify-content: end;
+        }
+        
+        /* Align receiver messages to the right */
+        .receiver {
+            float: inline-end;
+        }
+        
+        /* Style for sender's image */
+        .sender img {
+            width: 20px; /* Adjust size as needed */
+            height: 20px; /* Adjust size as needed */
+            margin-right: 5px;
+            vertical-align: middle;
+            border-radius: 50%; /* Makes the image round */
+        }
+        

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/mainapp.css">
+    <link rel="stylesheet" href="../style/bootstrap.min.css">
+    <link rel="stylesheet" href="../style/bulma.min.css">
+    <link rel="stylesheet" href="../style/stylecss.css">
+
+  
+    <title>timer</title>
+    
+
+</head>
+<style>
+.timer{
+    font-size: 30px;
+    width: 200px;
+    text-align: center;
+}
+
+span{
+    display: block !important;
+      padding: 5px !important;
+     height: 46px !important; 
+    margin: 0 0px !important; 
+    padding-top: 5px !important; 
+    width: 50px !important; 
+}
+
+img{
+    width: 30%;
+    margin: auto;
+    border-radius: 18%;
+}
+
+#countdown{
+    width: 200px !important;
+    font-size: 30px !important;
+    color: blue !important;
+    height: 60px !important;
+}
+
+</style>
+
+ 
+<body>
+
+
+ 
+  <div class="ip-address-container">
+  
+  
+</div>
+<div style="width: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+background-color: #edefec;
+margin-bottom: 10px;">
+<h1 class="h1" style="text-align: center; color: #007bff;">timer </h1>
+
+<img src="./asset/clock.jpg" alt="" srcset=""></div>
+  <div style="background-color: cadetblue;display: flex; justify-content: center; flex-direction: column;gap: 20px;" class="flex moderateur-div">
+
+
+     <div style=" display: flex; width: 80%; justify-content: center; align-items: center;">
+        <input   onkeypress="sendmodirateur('time',event)" class="form-control timer" placeholder="00:min" type="number" name="" id="n6">
+
+        <span  id="countdown" >00:00</span>
+
+     </div>
+     <div style=" display: flex; width: 80%; justify-content: center;">
+        <input oninput="sendfontsize('time', this, event)" class="w300px orionta" min="0" max="300" type="range" name="" id="fontinput" placeholder="fontsize">
+        <span id="fontSpan">-</span>
+
+    </div>
+    <div style=" display: flex; width: 80%; justify-content: center;">
+        <input oninput="sendmargin('time', event)" class="w300px" type="range" max="50" min="0" name="" id="margininput">
+        <span id="marginSpan">-</span>
+    </div>
+
+
+    </div>
+    
+   
+
+
+ 
+
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery.custom-select.js"></script>
+
+
+    
+    <script src="../js/swtt.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../js/appjs.js"></script>
+    <script src="../js/counter.js"></script>
+    <script src="../js/notify.min.js"></script>
+ 
+    
+    <script>
+        // Get the input elements by their IDs
+        var fontInput = document.getElementById('fontinput');
+        var marginInput = document.getElementById('margininput');
+    
+        // Get the spans by their IDs
+        var fontSpan = document.getElementById('fontSpan');
+        var marginSpan = document.getElementById('marginSpan');
+    
+        // Add event listeners to the input elements to update the spans
+        fontInput.addEventListener('input', function(event) {
+            // Set the value of the span to the value of the input
+            fontSpan.textContent = event.target.value;
+        });
+    
+        marginInput.addEventListener('input', function(event) {
+            // Set the value of the span to the value of the input
+            marginSpan.textContent = event.target.value;
+        });
+    </script>
+    
+</body>
+</html>

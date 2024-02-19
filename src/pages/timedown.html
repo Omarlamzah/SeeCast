@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>time down</title>
+    <link rel="stylesheet" href="../style/css.css">
+
+</head>
+<style>
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  background-color: #1a1a1a;
+  font-family: sans-serif;
+  font-size: 15px;
+  color: #ccc;
+}
+input[type="text"] {
+  background-color: transparent;
+  margin-top: 30px;
+  border: 0;
+  border-bottom: solid 1px #8080ff;
+  text-align: center;
+  font-size: 20px;
+  color: #518bf0;
+  text-shadow: 0 0 3px #518bf0;
+  width: 45px;
+  display: inline-block;
+}
+input:focus {
+  outline: 0;
+  border-bottom: dashed 1px #ff8080;
+}
+input::-moz-selection {
+  color: #1a1a1a;
+  background-color: #c6e4ee;
+}
+input::selection {
+  color: #1a1a1a;
+  background-color: #c6e4ee;
+}
+::-webkit-input-placeholder {
+  color: #7aa6f3;
+  text-shadow: 0 0 3px #7aa6f3;
+}
+:-moz-placeholder {
+  color: #7aa6f3;
+  text-shadow: 0 0 3px #7aa6f3;
+}
+::-moz-placeholder {
+  color: #7aa6f3;
+  text-shadow: 0 0 3px #7aa6f3;
+}
+:-ms-input-placeholder {
+  color: #7aa6f3;
+  text-shadow: 0 0 3px #7aa6f3;
+}
+.wrapper {
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -o-box-align: center;
+  align-items: center;
+  -o-box-pack: center;
+  justify-content: center;
+  -o-box-orient: vertical;
+  flex-direction: column;
+  height: 100%;
+}
+.green {
+  margin-top: 15px;
+}
+.green .progress,
+.red .progress,
+.orange .progress {
+  position: relative;
+  border-radius: 50%;
+}
+.green .progress,
+.red .progress,
+.orange .progress {
+  width: 250px;
+  height: 250px;
+}
+.green .progress {
+  border: 5px solid #53fc53;
+}
+.green .progress {
+  box-shadow: 0 0 20px #029502;
+}
+.green .progress,
+.red .progress,
+.orange .progress {
+  transition: all 1s ease;
+}
+.green .progress .inner,
+.red .progress .inner,
+.orange .progress .inner {
+  position: absolute;
+  overflow: hidden;
+  z-index: 2;
+  border-radius: 50%;
+}
+.green .progress .inner,
+.red .progress .inner,
+.orange .progress .inner {
+  width: 240px;
+  height: 240px;
+}
+.green .progress .inner,
+.red .progress .inner,
+.orange .progress .inner {
+  border: 5px solid #1a1a1a;
+}
+.green .progress .inner,
+.red .progress .inner,
+.orange .progress .inner {
+  transition: all 1s ease;
+}
+.green .progress .inner .water,
+.red .progress .inner .water,
+.orange .progress .inner .water {
+  position: absolute;
+  z-index: 1;
+  width: 200%;
+  height: 200%;
+  left: -50%;
+  border-radius: 40%;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-name: spin;
+  animation-name: spin;
+}
+.green .progress .inner .water {
+  top: 25%;
+}
+.green .progress .inner .water {
+  background: rgba(83,252,83,0.5);
+}
+.green .progress .inner .water,
+.red .progress .inner .water,
+.orange .progress .inner .water {
+  transition: all 1s ease;
+}
+.green .progress .inner .water,
+.red .progress .inner .water,
+.orange .progress .inner .water {
+  -webkit-animation-duration: 10s;
+  animation-duration: 10s;
+}
+.green .progress .inner .water {
+  box-shadow: 0 0 20px #03bc03;
+}
+.green .progress .inner .glare,
+.red .progress .inner .glare,
+.orange .progress .inner .glare {
+  position: absolute;
+  top: -120%;
+  left: -120%;
+  z-index: 5;
+  width: 200%;
+  height: 200%;
+  transform: rotate(45deg);
+  border-radius: 50%;
+}
+.green .progress .inner .glare,
+.red .progress .inner .glare,
+.orange .progress .inner .glare {
+  background-color: rgba(255,255,255,0.15);
+}
+.green .progress .inner .glare,
+.red .progress .inner .glare,
+.orange .progress .inner .glare {
+  transition: all 1s ease;
+}
+.green .progress .inner .percent,
+.red .progress .inner .percent,
+.orange .progress .inner .percent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-weight: bold;
+  text-align: center;
+}
+.green .progress .inner .percent,
+.red .progress .inner .percent,
+.orange .progress .inner .percent {
+  line-height: 240px;
+  font-size: 92.3076923076923px;
+}
+.green .progress .inner .percent {
+  color: #03c603;
+}
+.green .progress .inner .percent {
+  text-shadow: 0 0 10px #029502;
+}
+.green .progress .inner .percent,
+.red .progress .inner .percent,
+.orange .progress .inner .percent {
+  transition: all 1s ease;
+}
+.red {
+  margin-top: 15px;
+}
+.red .progress {
+  border: 5px solid #ed3b3b;
+}
+.red .progress {
+  box-shadow: 0 0 20px #7a0b0b;
+}
+.red .progress .inner .water {
+  top: 75%;
+}
+.red .progress .inner .water {
+  background: rgba(237,59,59,0.5);
+}
+.red .progress .inner .water {
+  box-shadow: 0 0 20px #9b0e0e;
+}
+.red .progress .inner .percent {
+  color: #a30f0f;
+}
+.red .progress .inner .percent {
+  text-shadow: 0 0 10px #7a0b0b;
+}
+.orange {
+  margin-top: 15px;
+}
+.orange .progress {
+  border: 5px solid #f07c3e;
+}
+.orange .progress {
+  box-shadow: 0 0 20px #7e320a;
+}
+.orange .progress .inner .water {
+  top: 50%;
+}
+.orange .progress .inner .water {
+  background: rgba(240,124,62,0.5);
+}
+.orange .progress .inner .water {
+  box-shadow: 0 0 20px #a0400c;
+}
+.orange .progress .inner .percent {
+  color: #a8430d;
+}
+.orange .progress .inner .percent {
+  text-shadow: 0 0 10px #7e320a;
+}
+#copyright {
+  margin-top: 25px;
+  background-color: transparent;
+  font-size: 14px;
+  color: #b3b3b3;
+  text-align: center;
+}
+#copyright div {
+  margin-bottom: 10px;
+}
+#copyright a,
+#copyright a:link {
+  color: #808080;
+  text-decoration: none;
+  border-bottom: 1px solid #808080;
+  padding-bottom: 2px;
+}
+#copyright a:active {
+  color: #b3b3b3;
+}
+#copyright a:hover {
+  color: #b3b3b3;
+  border-bottom: 1px solid #b3b3b3;
+  padding-bottom: 4px;
+}
+.instructions {
+  display: inline-block;
+  margin: 5px 0;
+  font-size: 16px;
+}
+@-webkit-keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+@import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
+
+body {
+  background: linear-gradient(140.97deg, #9aff9e 18.58%, #448dfb 149.12%);
+  font-family: "Poiret One";
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#countdown {
+  color: #000000;
+  font-size: 320px;
+
+}
+
+   .para{text-align: center;   margin-top: 20vh; font-size: 180px;}
+/*
+body{
+    background-image: url(bgt.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100vh;
+}
+*/
+body{
+  
+  background-size: 100% 0vh;
+  background-repeat: no-repeat;
+}
+</style>
+<body id="bdy">
+    
+
+
+ 
+
+
+
+<div class="wrapper">
+
+<div onclick="fullscreen()" id="countdown"  class="para">07:00</div>
+
+  <div class="green">
+    <div class="progress">
+      <div class="inner">
+        <div class="percent"><span>100</span>%</div>
+        <div class="water"></div>
+        <div class="glare"></div>
+      </div>
+    </div>
+  </div>
+
+<audio id="sound" src="../uploads/sound/a1.mp3"></audio>
+
+ </a></div>
+  </section>
+</div>
+  
+
+</body id="bdy">
+<script src="/socket.io/socket.io.js"></script>
+<script src="../js/jquery.js"></script>
+<script>const socket =window.io()
+ var para=document.getElementById("countdown")
+
+
+socket.on("chtabtout",function(res){
+    document.body.style.backgroundImage = "url('../uploads/"+res+"')"; 
+
+setInterval(function(){
+    document.body.style.backgroundSize="100% 100vh"; 
+},500)
+
+})
+
+socket.on("ctabletnumb",function(res){
+  if(res[1]=='time'){
+    document.body.style.backgroundImage = "url('../uploads/"+res[0]+"')"; 
+
+    setInterval(function(){
+        document.body.style.backgroundSize="100% 100vh"; 
+    },500)
+  }
+    
+
+})
+    var para=document.getElementById("countdown")
+    socket.on("datatopage",info=>{
+    if(typeof(info['time'])=="string"){
+    para.innerText=info[14];
+    para.style.fontSize="120px";
+}
+else if (typeof(info[13])=="undefined"){
+    para.innerText="source dart";
+}
+else{
+    para.innerText=info[14][0];
+}
+para.style.fontSize=info['time'][1]+"px";
+
+})
+
+
+
+socket.on("fontsize",fontsize=>{
+    console.log(fontsize)
+    if(fontsize[0]=='time'){
+        para.style.fontSize=fontsize[1]+"px";
+    }
+    
+})
+var timefromm
+var xx=0
+var cinter1
+var cinter2
+socket.on("lesmodirateur",lesmodirateur=>{
+xx=0
+    timefromm=lesmodirateur[1]   
+    
+    if(lesmodirateur[0]=='time'){
+      para.style.color="black"; 
+        document.getElementById("countdown").innerText=lesmodirateur[1];
+        startTimer(lesmodirateur[1] * 60); 
+        if(document.getElementById("countdown").innerText=="00:00"){
+          startTimer(lesmodirateur[1] * 0); 
+          clearInterval(ticker);
+        
+
+          clearInterval(cinter1)
+          clearInterval(cinter2)
+         
+  }
+      
+    }
+    
+})
+
+var togle=false
+function fullscreen(){
+    if(togle==false)
+    {
+        document.documentElement.webkitRequestFullscreen()
+         togle=true
+    }
+    else{
+        togle=false
+        document.exitFullscreen()
+
+    }
+    
+}
+
+
+socket.on("positionmoneteur",positionmoneteur=>{
+   
+   if(positionmoneteur[0]=='time'){
+      
+       para.style.marginTop=positionmoneteur[1]+"vh";
+
+   }
+   
+})
+
+socket.on("setcolor",setcolor=>{  
+    if(setcolor[0]==0 || setcolor[0]=='time')  {
+         para.style.color=setcolor[1]; 
+    }       
+})
+
+     socket.on("setbgcolor",setbg=>{ 
+    if(setbg[0]==0 || setbg[0]=='time')  {
+       document.getElementById("bdy").style.backgroundColor=setbg[1];  
+    }
+})
+
+
+  let timeInSecs;
+  let ticker;
+
+function startTimer(secs) {
+  clearInterval(ticker);
+  timeInSecs = parseInt(secs);
+  ticker = setInterval("tick()", 100);
+}
+
+function tick() {
+  xx++
+  var dif=(100000/(timefromm*60*1000))
+  chncount(100-dif*xx)
+  let secs = timeInSecs;
+  if (secs > 0) {
+    timeInSecs--;
+  } else {
+    clearInterval(ticker);
+    startTimer(5 * 60); // 5 minutes in seconds
+  }
+  let mins = Math.floor(secs / 60);
+  secs %= 60;
+  let result =
+    (mins < 10 ? "0" : "") + mins + ":" + (secs < 10 ? "0" : "") + secs;
+  document.getElementById("countdown").innerHTML = result;
+  if(result=="00:00"){
+     document.getElementById("countdown").innerHTML="00:00"
+     clearInterval(ticker);
+     
+  }
+}
+ function chncount(vac) {
+
+  console.log(vac)
+  var colorInc = 100 / 3;
+    var val = vac
+    if (val != "" && !isNaN(val) && val <= 100 && val >= 0) {
+    //  console.log(val);
+      var valOrig = val;
+      val = 100 - val;
+      if (valOrig == 0) {
+        $("#percent-box").val(0);
+        $(".progress .percent").text(0 + "%");
+      } else $(".progress .percent").text(valOrig + "%");
+      $(".progress").parent().removeClass();
+      $(".progress .water").css("top", val + "%");
+      if (valOrig < colorInc * 1) $(".progress").parent().addClass("red");
+      else if (valOrig < colorInc * 2)
+        $(".progress").parent().addClass("orange");
+      else $(".progress").parent().addClass("green");
+    } else {
+      $(".progress").parent().removeClass();
+      $(".progress").parent().addClass("orange");
+      $(".progress .water").css("top", 100  + "%");
+      $(".progress .percent").text(0 + "%");
+      $("#percent-box").val("");
+
+
+
+      var ss= document.getElementById("sound")
+      para.style.color="red"; 
+/*
+       cinter1=  setInterval(function(){
+      para.style.color="red";
+     },1400)
+
+     
+
+     cinter2= setInterval(function(){
+      para.style.color="black";
+     },1000)
+     */
+      ss.loop=true
+      ss.play()
+
+      
+      setTimeout(function(){
+          ss.pause()
+      },10000)
+
+      
+    }
+  };
+;
+
+       
+</script>
+
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tablet</title>
+    <link rel="stylesheet" href="../style/css.css">
+    <link rel="stylesheet" href="../style/main.css">
+
+</head>
+<style>
+    #videoshow{
+        display: none;
+        width: 100vw;
+        height: 100vh;
+    }
+    
+    
+    
+    </style>
+    
+    <body class="bd" id="bd">
+        
+    
+    <h1 class="" onclick="fullscreen()" id="para">Welcome</h1>
+    <video controls muted loop autoplay id="videoshow" src=""></video>
+    
+      
+    
+    </body >
+<script src="/socket.io/socket.io.js"></script>
+<script src="/../uploads/jquery.js"></script>
+<script>const socket =window.io()
+ var para=document.getElementById("para")
+
+
+ 
+
+ 
+
+socket.on("chtabtout",function(res){
+    const videoshow = document.getElementById("videoshow")
+   if(res.endsWith(".mp4")){
+    console.log(res +"this is vido")
+    para.style.display="none"
+    videoshow.style.display="block"
+    videoshow.src= "../uploads/"+res
+    videoshow.play()
+   }
+   else{
+    console.log(res +"this is other file")
+    videoshow.style.display="none"
+    para.style.display="block"
+    
+    document.body.style.backgroundImage = "url('../uploads/"+res+"')"; 
+    setInterval(function(){
+        document.body.style.backgroundSize="100% 100vh"; 
+    },500)
+
+
+    
+   }
+
+    
+
+})
+  /////img  
+socket.on("ctabletnumb",function(res){
+  
+  if(res[1]==55){
+
+    const videoshow = document.getElementById("videoshow")
+   if(res[0].endsWith(".mp4")){
+    console.log(res +"this is vido")
+    para.style.display="none"
+    videoshow.style.display="block"
+    videoshow.src= "../uploads/"+res[0]
+    videoshow.play()
+   }
+   else{
+    console.log(res +"this is other file")
+    videoshow.style.display="none"
+    para.style.display="block"
+    
+    document.body.style.backgroundImage = "url('../uploads/"+res[0]+"')"; 
+    setInterval(function(){
+        document.body.style.backgroundSize="100% 100vh"; 
+    },500)
+
+
+    
+   }
+    
+  }
+})
+  
+    var para=document.getElementById("para")
+    socket.on("datatopage",info=>{
+    if(typeof(info[55])=="string"){
+    para.innerText=info[14];
+    para.style.fontSize="120px";
+}
+else if (typeof(info[13])=="undefined"){
+    para.innerText="source dart";
+}
+else{
+    para.innerText=info[14][0];
+}
+para.style.fontSize=info[55][1]+"px";
+
+})
+
+
+
+socket.on("fontsize",fontsize=>{
+    
+    if(fontsize[0]==55){
+        para.style.fontSize=fontsize[1]+"px";
+    }
+    
+})
+
+socket.on("lesmodirateur",lesmodirateur=>{
+    
+    if(lesmodirateur[0]==55){
+      
+        document.getElementById("para").innerText=lesmodirateur[1];
+
+        
+      
+    }
+    
+})
+
+var togle=false
+function fullscreen(){
+    if(togle==false)
+    {
+        document.documentElement.webkitRequestFullscreen()
+         togle=true
+    }
+    else{
+        togle=false
+        document.exitFullscreen()
+
+    }
+    
+}
+
+
+socket.on("positionmoneteur",positionmoneteur=>{
+   
+   if(positionmoneteur[0]==55){
+      
+       para.style.marginTop=positionmoneteur[1]+"vh";
+
+   }
+   
+})
+
+socket.on("setcolor",setcolor=>{  
+    if(setcolor[0]==0 || setcolor[0]==55)  {
+         para.style.color=setcolor[1]; 
+    }       
+})
+
+     socket.on("setbgcolor",setbg=>{ 
+    if(setbg[0]==0 || setbg[0]==55)  {
+       document.getElementById("bdy").style.backgroundColor=setbg[1];  
+    }
+})
+
+
+
+
+
+
+socket.on("datartxt",retation=>{
+   
+   console.log(retation)
+   
+   if(retation[0]==55){
+      para.innerText=retation[1]
+   }
+   
+})
+     
+     
+socket.on("changeanim",function(animvalue){
+para.classList.remove("animate-charcter")
+para.classList.remove("textanimation")
+para.classList.remove("text-shadow")
+para.classList.remove("box-with-text")
+para.classList.remove("apple")
+if(animvalue[1]==55 || animvalue[1]==0){
+    para.classList.add(animvalue[0])
+}
+
+ 
+})
+</script>
+
+</html>

@@ -1,0 +1,94 @@
+{
+  "name": "SeeCast",
+  "version": "3.0.0",
+  "description": "Seecast moderator application for event management",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js",
+    "pack": "build --dir",
+    "pack-installer": "build",
+    "rebuild": "electron-rebuild -f -w better-sqlite3",
+
+    "build": "electron-builder build --win --publish never",
+    "deploy": "electron-builder build  --win --publish always",
+
+
+    "postinstall": "electron-builder install-app-deps",
+    "dist":"electron-builder build"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/Omarlamzah/SeeCast",
+  },
+   
+    "publish": {
+     "provider": "github",
+     "token":"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",
+    "releaseType": "release"
+  },
+  "keywords": [
+    "Electron",
+    "quick",
+    "management",
+    "event",
+    "moderator",
+    "Seecast"
+  ],
+  "author": "Omarlamzah",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "@electron/rebuild": "^3.6.0",
+    "electron": "^28.2.1",
+    "electron-builder": "^22.14.7",  
+    "http-server": "^0.10.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.7",
+    "better-sqlite3": "^9.4.1",
+    "body-parser": "^1.20.2",
+    "cookies": "^0.9.1",
+    "custom-electron-titlebar": "^4.2.8",
+    "ejs": "^2.5.6",
+    "electron-alert": "^0.1.20",
+    "electron-is-dev": "^0.1.2",
+    "electron-store": "^8.1.0",
+    "express": "^4.15.3",
+    "express-fileupload": "^1.4.3",
+    "shelljs": "^0.8.5",
+    "socket.io": "^4.7.4",
+    "sqlite-electron": "^3.0.5",
+    "sudo-prompt": "^9.2.1",
+    "sweetalert2": "^11.10.5",
+    "uaup-js": "^0.0.22"
+  },
+  "build": {
+    "appId": "com.electron.SeeCast",
+    "productName": "SeeCast",
+    "win": {
+      "target": [
+        "NSIS"
+      ],
+      "icon": "icon/icon.ico",
+      "requestedExecutionLevel": "requireAdministrator"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "app/**/*",
+      "node_modules/**/*",
+      "src/**/*",
+      "icon/*",
+      "LICENSE.md"
+    ],
+    "extraResources": [
+      "./app/db/db.db"
+    ],
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "Omarlamzah",
+        "repo": "SeeCast"
+      }
+    ]
+  }
+}

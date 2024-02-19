@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/mainapp.css">
+    <link rel="stylesheet" href="../style/bootstrap.min.css">
+    <link rel="stylesheet" href="../style/bulma.min.css">
+    <link rel="stylesheet" href="../style/stylecss.css">
+    <title>theme</title>
+
+</head>
+<style>
+ /* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f1f1f1;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Styles */
+button {
+  margin: 5px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  color: white;
+}
+
+button.blue {
+  background-color: blue;
+}
+
+button.red {
+  background-color: red;
+}
+
+button.fullscreen {
+  background-color: rgb(68, 39, 39);
+}
+
+/* Input and Select Styles */
+input[type="text"],
+input[type="range"],
+select {
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Section Styles */
+.section {
+  margin-bottom: 20px;
+}
+
+/* Text Color and Background Color */
+.color-picker {
+  display: inline-block;
+  margin: 5px;
+}
+
+/* Button Group Styles */
+.button-group {
+  margin-top: 10px;
+}
+
+/* Position Styles */
+.position-input {
+  width: 200px;
+}
+
+/* Text Alignment */
+.text-center {
+  text-align: center;
+}
+
+/* Flexbox Styles */
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+/* Hide Styles */
+.hidediv {
+  display: none;
+}
+
+/* Moderator Div Styles */
+.moderateur-div {
+  background-color: #f9f9f9;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+/* Container for Buttons and Inputs */
+.controls-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+
+
+.artcl{
+  border: 3px solid darkred;
+    border-radius: 13px;
+    background-color: #1c79d1;
+    margin-top: 10px;
+}
+
+
+.moderateur-div  p
+{
+  margin-top: 14px;
+}
+
+
+input[type=range] {
+  height: 26px;
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 100%;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 14px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 1px #50555C;
+  background: #50555C;
+  border-radius: 14px;
+  border: 0px solid #000000;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 0px 0px 0px #000000;
+  border: 0px solid #000000;
+  height: 20px;
+  width: 40px;
+  border-radius: 12px;
+  background: #529DE1;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -3px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #50555C;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 14px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 1px #50555C;
+  background: #50555C;
+  border-radius: 14px;
+  border: 0px solid #000000;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0px 0px 0px #000000;
+  border: 0px solid #000000;
+  height: 20px;
+  width: 40px;
+  border-radius: 12px;
+  background: #529DE1;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 14px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #50555C;
+  border: 0px solid #000000;
+  border-radius: 28px;
+  box-shadow: 1px 1px 1px #50555C;
+}
+input[type=range]::-ms-fill-upper {
+  background: #50555C;
+  border: 0px solid #000000;
+  border-radius: 28px;
+  box-shadow: 1px 1px 1px #50555C;
+}
+input[type=range]::-ms-thumb {
+  margin-top: 1px;
+  box-shadow: 0px 0px 0px #000000;
+  border: 0px solid #000000;
+  height: 20px;
+  width: 40px;
+  border-radius: 12px;
+  background: #529DE1;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #50555C;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #50555C;
+}
+
+
+
+.moderateur-div span{
+  display: none;
+  color: #ffffff;
+    border: 4px solid #b5a6a6;
+    background-color: #c18686;
+    padding: 10px;
+    border-radius: 50%;
+    width: 180px;
+    text-align: center;
+    margin: 0 18px;
+    height: 65px;
+    margin: 0 0px;
+    padding-top: 5px;
+}
+
+
+
+svg{fill: black;}
+#countdown{display: none;
+  height: 38px;
+    padding-top: 4px;
+    border-radius: 13px;
+    width: 70px;
+}
+
+
+/* Style the select box */
+select {
+  width: 200px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f2f2f2;
+  font-size: 20px;
+  color: #056970;
+  cursor: pointer;
+}
+
+/* Style the options within the select box */
+select option {
+  padding: 8px;
+  background-color: #fff;
+  color: #333;
+}
+
+/* Style the select box when it's focused */
+select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+
+/* Style the options within the select box */
+select option {
+  padding: 8px;
+  font-size: 14px;
+  background-color: #057579; /* Background color for unselected options */
+  color: #ffffff; /* Text color for unselected options */
+}
+
+/* Style the selected option */
+select option:checked {
+  background-color: #007bff; /* Background color for the selected option */
+  color: #fff; /* Text color for the selected option */
+}
+
+/* Style the options when hovering over them */
+select option:hover {
+  background-color: #10dac9; /* Background color when hovering over options */
+  color: #ffffff; /* Text color when hovering over options */
+}
+
+
+.btnstyle{
+    color: black;
+    background-color: aqua;
+}
+
+
+body{
+    margin: 0;
+    padding: 5px;
+}
+
+</style>
+
+<body>
+
+
+ 
+ 
+  
+  
+    
+ 
+
+
+
+
+
+
+    <section class="contentm container">
+      
+ 
+ 
+
+  <article class="artcl">
+
+    <div>
+      <div>
+      <select id="numtab" style=" width: 90%;" class="form-select">
+        <option value="0">all Device</option>
+             <option value="1"> Device 1</option>    <option value="2"> Device 2</option>    <option value="3"> Device 3</option>    <option value="4"> Device 4</option>    <option value="5"> Device 5</option>    <option value="6"> Device 6</option>    <option value="7"> Device 7</option>    <option value="8"> Device 8</option>    <option value="9"> Device 9</option>    <option value="10">Device 10</option>    <option value="11">Device 11</option>    <option value="12">Device 12</option>    <option value="13">Device 13</option>    <option value="14">Device 14</option>    <option value="15">Device 15</option>    <option value="16">Device 16</option>    <option value="17">Device 17</option>    <option value="18">Device 18</option>    <option value="19">Device 19</option>    <option value="20">Device 20</option>    <option value="21">Device 21</option>    <option value="22">Device 22</option>     <option value="23">Device 23</option>    <option value="24">Device 24</option>    <option value="25">Device 25</option>    <option value="26">Device 26</option>    <option value="27">Device 27</option>    <option value="28">Device 28</option>    <option value="29">Device 29</option>     <option value="30">Device 30</option>     <option value="31">Device 31</option>     <option value="32">Device 32</option>     <option value="33">Device 33</option>     <option value="34">Device 34</option>     <option value="35">Device 35</option>     <option value="36">Device 36</option>     <option value="37">Device 37</option>     <option value="38">Device 38</option>     <option value="39">Device 39</option>     <option value="40">Device 40</option>     <option value="41">Device 41</option>     <option value="42">Device 42</option>     <option value="43">Device 43</option>     <option value="44">Device 44</option>     <option value="45">Device 45</option>     <option value="46">Device 46</option>     <option value="47">Device 47</option>     <option value="48">Device 48</option>     <option value="49">Device 49</option>     <option value="50">Device 50</option>     <option value="51">Device 51</option>     <option value="52">Device 52</option>     <option value="53">Device 53</option>     <option value="54">Device 54</option>     <option value="55">Device 55</option>     <option value="56">Device 56</option>     <option value="57">Device 57</option>     <option value="58">Device 58</option>     <option value="59">Device 59</option>     <option value="60">Device 60</option> 
+
+      </select>   <input type="color" onchange="sendColor(event)" name="" > <span style="color: #080a09;">text color</span> 
+      
+      </div>
+      <div>
+      <input type="color" onchange="sendbgColor(event)" name="" > <span style="color: #080a09;">background color</span> 
+      
+      </div>
+      
+      </div>
+
+        </article>
+
+      
+</section> 
+
+       
+    <div>
+
+
+       
+    
+    </div>
+
+    
+   
+    </section>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery.custom-select.js"></script>
+
+
+    
+    <script src="../js/swtt.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../js/appjs.js"></script>
+    <script src="../js/counter.js"></script>
+    <script src="../js/notify.min.js"></script>
+ 
+
+
+
+ 
+<script>
+  
+
+const socket =window.io()
+
+function bgchange(){
+  alertsweet()
+   socket.emit("bgcahne",[$("#imgname").val(),$("#numtabbg").val()] )
+
+   
+}
+
+function bgtoutchange(){
+  alertsweet()
+    socket.emit("bgcahne",[$("#imgname").val()] )
+
+}
+
+function setanimation(){
+    alertsweet()
+    var animoption =document.getElementById("animoption").value
+
+    var Deviceid =document.getElementById("numtabanimiation").value
+    console.log(animoption)
+    console.log(Deviceid)
+
+    socket.emit("setanimation",[animoption,Deviceid])
+   }
+
+
+function sendColor(event){
+  var numtab = document.getElementById("numtab")
+  var colorhex=event.target.value
+            socket.emit("setcolor",[numtab.value,colorhex])
+            Swal.fire(
+  'la mise a jour',
+  'envoyé avec succès',
+  'success'
+)
+        }
+
+
+        function sendbgColor(event){
+            var numtab = document.getElementById("numtab")
+            var colorhex=event.target.value
+            socket.emit("setbgcolor",[numtab.value,colorhex])
+            alertsweet()
+        }
+
+
+function send(){
+  
+
+var names =document.getElementsByClassName("names")
+var fontsz =document.getElementsByClassName("sizfon")
+var orionta =document.getElementsByClassName("orionta")
+socket.emit("lesnom",[
+       [names[0].value,fontsz[0].value,0],
+       [names[1].value,fontsz[1].value,0],
+       [names[2].value,fontsz[2].value,0],
+       [names[3].value,fontsz[3].value,0],
+       [names[4].value,fontsz[4].value,0],
+       [names[5].value,fontsz[5].value,0],
+       [names[6].value,fontsz[6].value,0],
+       [names[7].value,fontsz[7].value,0],
+       [names[8].value,fontsz[8].value,0],
+       [names[9].value,fontsz[9].value,0],
+       [names[10].value,fontsz[10].value,0],
+       [names[11].value,fontsz[11].value,0],
+       [names[12].value,fontsz[12].value,0],
+       [names[13].value,fontsz[13].value,0],
+
+
+])
+alertsweet()
+}
+function alertsweet(){
+  Swal.fire(
+  'la mise a jour',
+  'envoyé avec succès',
+  'success'
+)
+}
+
+
+function sendspisfivtext(evaluetarget ,i){ 
+  alertsweet()
+  var txt=document.getElementsByClassName("names")[i].value
+  
+
+//socket.emit("retateinfo",[indexT,selectob.value])      
+      socket.emit("texttoDevice",[evaluetarget.target.value,txt])  
+
+   }
+
+
+
+function sendmargin(m,event){ 
+  document.getElementById("nm"+m).style.display="block"
+  document.getElementById("nm"+m).innerHTML=(event.target.value*2).toFixed(0)+"<br/>%"
+  socket.emit("positionmoneteur",[m,event.target.value])  
+  //}
+}
+
+
+
+
+function sendfontsize(indexfont ,selectinput,e){ 
+  document.getElementById("nf"+indexfont).style.display="block"
+  document.getElementById("nf"+indexfont).innerHTML=(event.target.value/3).toFixed(0)+"<br/>%"
+
+  socket.emit("fontsize",[indexfont,e.target.value])  
+
+}
+
+
+
+
+function sendmodirateur(indexmodi,e){ 
+  //
+  if(e.key==="Enter"){
+ 
+
+  Swal.fire(
+    e.target.value+" a Device  ",
+    indexmodi+"envoyé avec succès ",
+  'success'
+)
+  socket.emit("lesmodirateur",[indexmodi,e.target.value])  
+  }
+}
+
+function reset(){
+  
+    var names =document.getElementsByClassName("names")
+    var fontsz =document.getElementsByClassName("fontsz")
+    var orionta =document.getElementsByClassName("orionta")
+
+
+for (let i = 0; i < names.length; i++) {
+    names[i].value="";
+     
+    
+}
+  
+}
+
+
+function setsamvalue(){
+    var inpuvalueall=document.getElementById("inpuvalueall").value
+    var names =document.getElementsByClassName("names")
+    var siz =document.getElementsByClassName("sizfon")
+        for (let i = 0; i < names.length-2; i++) {
+            names[i].value=inpuvalueall;   
+            siz[i].value="33"
+            console.log(siz[i].value)
+        }
+
+}
+
+
+
+
+
+
+
+function fullscreenmodrateur(){
+  socket.emit("fullscrenn")  
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Function to add a moderator div
+var nmodi=1
+function addModerateur() {
+ 
+  if(nmodi<60 && nmodi>=0){
+    nmodi++
+    document.getElementById("nmodi").innerHTML=nmodi
+    $('.moderateur-div:hidden:first').css("display","flex"); // Show the first hidden moderator div
+
+   }
+}
+
+// Function to remove a moderator div
+function removeModerateur() {
+  
+   if(nmodi<60 && nmodi>1){
+    nmodi--
+    document.getElementById("nmodi").innerHTML=nmodi
+    $('.moderateur-div:visible:last').hide(); // Hide the last visible moderator div
+
+   }
+
+}
+
+selectoption()
+function selectoption(){
+
+  for (let i = 0; i < 59; i++) {
+    var option =   document.getElementsByName("selecttext")[i].options[i+1]
+    option.selected=true;
+
+   
+    
+  }
+}
+
+</script>
+
+
+
+
+<script src="../uploads/js/counter.js"></script>
+
+</body>
+</html>

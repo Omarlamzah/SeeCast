@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hotspot App</title>
+  <link rel="stylesheet" href="./hotspotcss.css">
+  <link rel="stylesheet" href="./style/loadder.css">
+
+</head>
+<body>
+
+  <div id="loader" class="loader">
+    <span></span>
+</div>
+
+  <div style="padding: 10px;">
+    <div class="input-section">
+
+      <div   class="ip-display" style=" text-align: center;">
+       <h3> to access into device url </h3>
+       <h4>use like this url  <br><a href="http://192.168.137.1:8080/1"> http://192.168.137.1:8080/X</a></h4>
+       <h4>replace XX with 1, or 2 ... 60  to coonect Device</h4>
+       <h4>use this url  <a href="http://192.168.137.1:8080/timer"> http://192.168.137.1:8080/timer </a> for timer</h4>
+
+
+        
+      </div>
+      <label for="ssid" class="label">Wi-Fi Name (SSID):</label>
+      <input type="text" id="ssid" name="ssid" class="input-field" placeholder="Enter Wi-Fi Name">
+      <label for="password" class="label">Password:</label>
+      <input type="password" id="password" name="password" class="input-field" placeholder="Enter Password">
+      <button id="configureHostedNetworkButton" class="config-button">Configure Hosted Network</button>
+    </div>
+    
+    <div class="button-section">
+      <button id="startHotspotButton" class="start-button">Start Hotspot</button>
+      <button id="stopHotspotButton" class="stop-button">Stop Hotspot</button>
+    </div>
+    
+     <!-- Display IPs and names -->
+     <button id="getHotspotInfoButton" class="info-button">Get Hotspot Info</button>
+     <h2 id="numIPAddresses">Number of IP Addresses Found: </h2>
+     <div id="ip_display" class="ip-display">
+       <!-- IP addresses and names will be displayed here -->
+     </div>
+     <!-- Display number of IP Addresses -->
+
+
+     <button id="wifiButon"  class="info-button">last connected wifi</button>
+     <div id="wifi_diplay" class="ip-display">
+      <!-- IP addresses and names will be displayed here -->
+    </div>
+   </div>
+
+
+
+   <!--  <script src="./preload.js"></script> -->
+  <script src="./hotspotRender.js"></script>
+</body>
+</html>

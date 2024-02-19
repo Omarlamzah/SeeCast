@@ -1,0 +1,449 @@
+
+ /* Global Styles */
+ body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f1f1f1;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: transparent;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Button Styles */
+  button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    color: white;
+  }
+  
+  button.blue {
+    background-color: blue;
+  }
+  
+  button.red {
+    background-color: red;
+  }
+  
+  button.fullscreen {
+    background-color: rgb(68, 39, 39);
+  }
+  
+  /* Input and Select Styles */
+  input[type="text"],
+  input[type="range"],
+  select {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  input[type="text"]
+    {
+   
+  font-size: 20px;
+  text-align: center;
+  color: blue;
+  font-weight: 700;
+  }
+  
+
+  /* Section Styles */
+  .section {
+    margin-bottom: 20px;
+  }
+  
+  /* Text Color and Background Color */
+  .color-picker {
+    display: inline-block;
+    margin: 5px;
+  }
+  
+  /* Button Group Styles */
+  .button-group {
+    margin-top: 10px;
+  }
+  
+  /* Position Styles */
+  .position-input {
+    width: 200px;
+  }
+  
+  /* Text Alignment */
+  .text-center {
+    text-align: center;
+  }
+  
+  /* Flexbox Styles */
+  .flex {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Hide Styles */
+  .hidediv {
+    display: none;
+  }
+  
+  /* Moderator Div Styles */
+  .moderateur-div {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 10px;
+    border-radius: 17px;
+  }
+  
+  /* Container for Buttons and Inputs */
+  .controls-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  
+  
+  .artcl{
+    border: 3px solid darkred;
+      border-radius: 13px;
+      background-color: #1c7ad14c;
+      margin-top: 10px;
+      padding: 15px;
+    display: flex;
+    flex-direction: column;
+     align-items: center;
+     cursor: pointer;
+     
+  }
+  
+  .artcl:hover{
+    background-color: #3c78b0a7;
+  }
+  
+  
+  input[type=range] {
+    height: 26px;
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 100%;
+  }
+  input[type=range]:focus {
+    outline: none;
+  }
+  input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 14px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 1px 1px 1px #50555C;
+    background: #50555C;
+    border-radius: 14px;
+    border: 0px solid #000000;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    box-shadow: 0px 0px 0px #000000;
+    border: 0px solid #000000;
+    height: 20px;
+    width: 40px;
+    border-radius: 12px;
+    background: #529DE1;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -3px;
+  }
+  input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #50555C;
+  }
+  input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 14px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 1px 1px 1px #50555C;
+    background: #50555C;
+    border-radius: 14px;
+    border: 0px solid #000000;
+  }
+  input[type=range]::-moz-range-thumb {
+    box-shadow: 0px 0px 0px #000000;
+    border: 0px solid #000000;
+    height: 20px;
+    width: 40px;
+    border-radius: 12px;
+    background: #529DE1;
+    cursor: pointer;
+  }
+  input[type=range]::-ms-track {
+    width: 100%;
+    height: 14px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+  }
+  input[type=range]::-ms-fill-lower {
+    background: #50555C;
+    border: 0px solid #000000;
+    border-radius: 28px;
+    box-shadow: 1px 1px 1px #50555C;
+  }
+  input[type=range]::-ms-fill-upper {
+    background: #50555C;
+    border: 0px solid #000000;
+    border-radius: 28px;
+    box-shadow: 1px 1px 1px #50555C;
+  }
+  input[type=range]::-ms-thumb {
+    margin-top: 1px;
+    box-shadow: 0px 0px 0px #000000;
+    border: 0px solid #000000;
+    height: 20px;
+    width: 40px;
+    border-radius: 12px;
+    background: #529DE1;
+    cursor: pointer;
+  }
+  input[type=range]:focus::-ms-fill-lower {
+    background: #50555C;
+  }
+  input[type=range]:focus::-ms-fill-upper {
+    background: #50555C;
+  }
+  
+  
+  
+  .moderateur-div span{
+    display: none;
+    color: #ffffff;
+      border: 4px solid #b5a6a6;
+      background-color: #c18686;
+      padding: 10px;
+      border-radius: 50%;
+      width: 180px;
+      text-align: center;
+      margin: 0 18px;
+      height: 65px;
+      margin: 0 0px;
+      padding-top: 5px;
+  }
+  
+  
+  
+  svg{fill: rgb(255, 255, 255);}
+  #countdown{display: none;
+    height: 38px;
+      padding-top: 4px;
+      border-radius: 13px;
+      width: 70px;
+  }
+  
+  
+  /* Style the select box */
+  select {
+    width: 400px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f2f2f2;
+    font-size: 20px;
+    color: #056970;
+    cursor: pointer;
+  }
+  
+  /* Style the options within the select box */
+  select option {
+    padding: 8px;
+    background-color: #fff;
+    color: #e4c861;
+    text-align: center;
+  }
+  
+  /* Style the select box when it's focused */
+  select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  
+  /* Style the options within the select box */
+  select option {
+    padding: 8px;
+    font-size: 23px;
+    background-color: #057579; /* Background color for unselected options */
+    color: #ffffff; /* Text color for unselected options */
+  }
+  
+  /* Style the selected option */
+  select option:checked {
+    background-color: #007bff; /* Background color for the selected option */
+    color: #fff; /* Text color for the selected option */
+  }
+  
+  /* Style the options when hovering over them */
+  select option:hover {
+    background-color: #10dac9; /* Background color when hovering over options */
+    color: #ffffff; /* Text color when hovering over options */
+  }
+  
+  
+  .btnstyle{
+      color: black;
+      background-color: aqua;
+  }
+
+
+
+
+
+  .btnadduser{
+    margin: 0;
+    background-color: #4b857c;
+    border: 1;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border: 2px dotted black;
+    border-radius: 23%;
+  }
+
+
+  .removeruserbtn{
+    margin: 0;
+    background-color: #a75648;
+    border: 1;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border: 2px dotted black;
+    border-radius: 23%;
+  }
+
+  .btnadduser svg,  .removeruserbtn svg{
+    fill: white;
+  }
+  
+  .btnadduser:hover{
+    background-color: #1e433d;
+  }
+
+  .removeruserbtn:hover{
+    background-color: #5c241a;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgb(196, 190, 190);
+    border-radius: 5px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(18, 4, 108);
+    border-radius: 10px;
+  }
+
+  select{
+    appearance: none;
+  }
+
+
+  
+
+:root {
+  --background: 255, 0, 60;
+  --size: 1rem;
+  --duration: 3s;
+  --scale: 3;
+  --opacity: 0.4;
+}
+ 
+
+.status__icon {
+  width: var(--size);
+  height: var(--size);
+  background: green;
+  border-radius: 100%;
+  position: relative;
+  text-align: justify;
+  animation: pulse-shadow var(--duration) calc(2 * var(--duration) / 3) linear infinite
+}
+
+.status__icon::after, .status__icon::before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background:green;
+  border-radius: 100%;
+}
+
+.status__icon:after {
+  animation: pulse var(--duration) linear infinite
+}
+
+.status__icon:before {
+  animation: pulse var(--duration) calc(var(--duration) / 3) linear infinite
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: var(--opacity);
+  }
+  
+  100% {
+    transform: scale(var(--scale));
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-shadow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(var(--background), var(--opacity))
+  }
+  
+  100% {
+    box-shadow: 0 0 0 calc((var(--scale) - 1) * var(--size) / 2) rgba(var(--background), 0)
+  }
+}
